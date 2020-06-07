@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import ApolloClient, { gql } from 'apollo-boost';
+import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ToastContainer } from 'react-toastify';
 import Nav from './components/Nav';
@@ -9,6 +9,8 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import CompleteRegistration from './pages/auth/CompleteRegistration';
 import { AuthContext } from './context/authContext';
+import PrivateRoute from './components/PrivateRoute';
+import PasswordUpdate from './pages/auth/PasswordUpdate';
 
 const App = () => {
   const {
@@ -38,6 +40,11 @@ const App = () => {
           exact
           path='/complete-registration'
           component={CompleteRegistration}
+        />
+        <PrivateRoute
+          exact
+          path='/password-update'
+          component={PasswordUpdate}
         />
       </Switch>
     </ApolloProvider>
