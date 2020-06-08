@@ -16,8 +16,26 @@ const Nav = () => {
     history.push('/login');
   };
 
+  const present = () => {
+    const overlay = document.querySelector('.overlay');
+    const sidebar = document.querySelector('#sidebar');
+    sidebar.classList.add('active');
+    overlay.classList.add('active');
+  };
+
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+    <nav
+      id='c_Navbar'
+      className='navbar navbar-expand-lg navbar-light bg-light'
+    >
+      <button
+        type='button'
+        id='sidebarCollapse'
+        className='btn btn-primary my-auto mr-2'
+        onClick={present}
+      >
+        <i className='fas fa-align-left'></i>
+      </button>
       <Link className='navbar-brand' to='/'>
         Home
       </Link>
