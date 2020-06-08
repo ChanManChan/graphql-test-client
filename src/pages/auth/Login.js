@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthContext } from '../../context/authContext';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth, googleAuthProvider } from '../../firebase';
 import { useMutation } from '@apollo/react-hooks';
@@ -37,7 +37,7 @@ const Login = () => {
         payload: { email: user.email, token: idTokenResult.token },
       });
       createUser();
-      history.push('/');
+      history.push('/profile');
       setLState((cs) => ({ ...cs, loading: false }));
     } catch (e) {
       console.log('> Login error', e);
@@ -55,7 +55,7 @@ const Login = () => {
       payload: { email: user.email, token: idTokenResult.token },
     });
     createUser();
-    history.push('/');
+    history.push('/profile');
     setLState((cs) => ({ ...cs, loading: false }));
   };
 
@@ -75,6 +75,7 @@ const Login = () => {
           handleSubmit={handleSubmit}
           setField={setLState}
           showPasswordInput
+          reveal_fp
         />
       )}
     </div>

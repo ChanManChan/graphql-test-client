@@ -53,15 +53,22 @@ const Nav = () => {
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav ml-auto mr-3'>
           {user ? (
-            <li className='nav-item'>
-              <a
-                style={{ cursor: 'pointer' }}
-                className='nav-link'
-                onClick={logout}
-              >
-                Logout
-              </a>
-            </li>
+            <>
+              <li className='nav-item'>
+                <Link to='/profile' className='nav-link'>
+                  {user.email.split('@')[0]}
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <a
+                  style={{ cursor: 'pointer' }}
+                  className='nav-link'
+                  onClick={logout}
+                >
+                  Logout
+                </a>
+              </li>
+            </>
           ) : (
             <>
               <li className='nav-item active'>

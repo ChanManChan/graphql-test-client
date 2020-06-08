@@ -23,7 +23,7 @@ a:focus {
 }
 
 .router {
-  margin: 5rem auto;
+  margin: 3.5rem auto;
 }
 
 /* SPINNER */
@@ -71,13 +71,6 @@ a:focus {
   z-index: 999;
   margin-left: -17rem;
   transition: all 0.3s;
-}
-
-@media (max-width: 768px) {
-  #sidebar {
-    width: 12.5rem;
-    margin-left: -12.5rem;
-  }
 }
 
 #sidebar.active {
@@ -176,6 +169,23 @@ a[data-toggle='collapse'] {
 #dismiss:hover {
   background: rgba(0, 0, 0, 0.3);
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    width: 12.5rem;
+    margin-left: -12.5rem;
+  }
+  #sidebar .sidebar-header {
+    padding: 0.75rem;
+  }
+  #dismiss {
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 1rem;
+    right: 0.5rem;
+    line-height: 1.5rem;
+  }
 }
 
 #content {

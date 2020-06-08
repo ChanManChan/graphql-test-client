@@ -1,13 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AuthForm = ({
-  email,
+  email = '',
   password = '',
   loading,
   handleSubmit,
-  setField,
+  setField = (f) => f,
   showPasswordInput = false,
   disable_email = false,
+  reveal_fp = false,
 }) => (
   <form onSubmit={handleSubmit}>
     <div className='form-group'>
@@ -40,9 +42,18 @@ const AuthForm = ({
         />
       </div>
     )}
-    <button className='btn btn-raised btn-primary' disabled={loading || !email}>
+    <button
+      type='submit'
+      className='btn btn-raised btn-primary'
+      disabled={loading || !email}
+    >
       Submit
     </button>
+    {reveal_fp && (
+      <Link className='btn btn-danger ml-4' to='/password/forgot'>
+        Forgot Password
+      </Link>
+    )}
   </form>
 );
 

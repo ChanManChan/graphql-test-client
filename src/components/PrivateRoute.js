@@ -24,65 +24,39 @@ const PrivateRoute = ({ children, ...rest }) => {
           <i className='fas fa-arrow-left'></i>
         </div>
         <div className='sidebar-header'>
-          <h4>Bootstrap Sidebar</h4>
+          <h4>Private routes</h4>
         </div>
         <ul className='list-unstyled components'>
-          <p>Dummy Heading</p>
+          <p>Actions</p>
           <li>
             <a
-              href='#homeSubmenu'
+              href='#profileSubmenu'
               data-toggle='collapse'
               aria-expanded='false'
               className='dropdown-toggle'
             >
-              Home
+              Profile Settings
             </a>
-            <ul className='collapse list-unstyled' id='homeSubmenu'>
+            <ul className='collapse list-unstyled' id='profileSubmenu'>
               <li>
-                <a href='#'>Home 1</a>
+                <Link to='/profile'>Profile</Link>
               </li>
               <li>
-                <a href='#'>Home 2</a>
-              </li>
-              <li>
-                <a href='#'>Home 3</a>
+                <Link to='/password/update'>Update Password</Link>
               </li>
             </ul>
           </li>
           <li>
-            <a href='#'>About</a>
-          </li>
-          <li>
-            <a
-              href='#pageSubmenu'
-              data-toggle='collapse'
-              aria-expanded='false'
-              className='dropdown-toggle'
-            >
-              Pages
-            </a>
-            <ul className='collapse list-unstyled' id='pageSubmenu'>
-              <li>
-                <a href='#'>Page 1</a>
-              </li>
-              <li>
-                <a href='#'>Page 2</a>
-              </li>
-              <li>
-                <a href='#'>Page 3</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href='#'>Portfolio</a>
-          </li>
-          <li>
-            <a href='#'>Contact</a>
+            <Link to='/post/create'>Post</Link>
           </li>
         </ul>
       </nav>
       <div className='overlay' onClick={vanish} />
-      <div id='content'></div>
+      <div id='content'>
+        <div className='container p-5'>
+          <Route {...rest} />
+        </div>
+      </div>
     </>
   );
 
@@ -90,3 +64,34 @@ const PrivateRoute = ({ children, ...rest }) => {
 };
 
 export default PrivateRoute;
+{
+  /* <li>
+<a
+  href='#pageSubmenu'
+  data-toggle='collapse'
+  aria-expanded='false'
+  className='dropdown-toggle'
+>
+  Pages
+</a>
+<ul className='collapse list-unstyled' id='pageSubmenu'>
+  <li>
+    <a href='#'>Page 1</a>
+  </li>
+  <li>
+    <a href='#'>Page 2</a>
+  </li>
+  <li>
+    <a href='#'>Page 3</a>
+  </li>
+</ul>
+</li> */
+}
+{
+  /* <li>
+<a href='#'>Portfolio</a>
+</li>
+<li>
+<a href='#'>Contact</a>
+</li> */
+}

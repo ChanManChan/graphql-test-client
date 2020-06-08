@@ -59,7 +59,7 @@ const CompleteRegistration = () => {
           payload: { email: user.email, token: idTokenResult.token },
         });
         createUser();
-        history.push('/');
+        history.push('/profile');
       }
     } catch (e) {
       toast.error(e.message, {
