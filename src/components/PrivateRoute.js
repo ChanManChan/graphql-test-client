@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
+import LoadingRedirect from './Loading&Redirect';
 
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoute = (props) => {
   const { state } = React.useContext(AuthContext);
   const [user, setUser] = React.useState(false);
 
@@ -54,13 +55,13 @@ const PrivateRoute = ({ children, ...rest }) => {
       <div className='overlay' onClick={vanish} />
       <div id='content'>
         <div className='container p-5'>
-          <Route {...rest} />
+          <Route {...props} />
         </div>
       </div>
     </>
   );
 
-  return user ? <NavLinks /> : <div className='spinner' />;
+  return user ? <NavLinks /> : <LoadingRedirect path='/login' />;
 };
 
 export default PrivateRoute;

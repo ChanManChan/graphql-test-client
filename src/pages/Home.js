@@ -3,16 +3,7 @@ import { gql } from 'apollo-boost';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { AuthContext } from '../context/authContext';
 import { useHistory } from 'react-router-dom';
-
-const GET_ALL_POSTS = gql`
-  {
-    allPosts {
-      id
-      title
-      description
-    }
-  }
-`;
+import { GET_ALL_POSTS } from '../graphql/queries';
 
 const Home = () => {
   const { data: { allPosts = [] } = {} } = useQuery(GET_ALL_POSTS);

@@ -28,6 +28,13 @@ a:focus {
 
 /* SPINNER */
 
+.redirect--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
 .spinner {
   height: 4rem;
   width: 4rem;
@@ -35,8 +42,14 @@ a:focus {
   border-top: none;
   border-right: none;
   border-radius: 50%;
-  margin: 15rem auto;
+  margin: 15rem auto 0;
   animation: rotation 1s linear infinite;
+}
+
+.redirect--msg {
+  text-align: center;
+  position: absolute;
+  bottom: -5rem;
 }
 
 @keyframes rotation {
@@ -191,4 +204,13 @@ a[data-toggle='collapse'] {
 #content {
   position: relative;
   z-index: 997;
+}
+
+/* IMAGE GRID */
+.c_grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  border: 0.15rem solid #eee;
+  padding: 0.2rem;
 }

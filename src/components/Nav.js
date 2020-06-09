@@ -39,6 +39,9 @@ const Nav = () => {
       <Link className='navbar-brand' to='/'>
         Home
       </Link>
+      <Link className='nav-item' to='/users'>
+        Users
+      </Link>
       <button
         className='navbar-toggler'
         type='button'
