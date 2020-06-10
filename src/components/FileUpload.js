@@ -4,7 +4,12 @@ import axios from 'axios';
 import { AuthContext } from '../context/authContext';
 import Image from './Image';
 
-const FileUpload = ({ setLState, ls_images = [] }) => {
+const FileUpload = ({
+  setLState,
+  ls_images = [],
+  singleUpload = false,
+  image = {},
+}) => {
   const {
     state: { user },
   } = React.useContext(AuthContext);
@@ -34,11 +39,14 @@ const FileUpload = ({ setLState, ls_images = [] }) => {
                 },
               }
             );
-            setLState((cs) => ({
-              ...cs,
-              ls_images: [...ls_images, data],
-              loading: false,
-            }));
+            if (singleUpload)
+              setLState((cs) => ({ ...cs, image: data, loading: false }));
+            else
+              setLState((cs) => ({
+                ...cs,
+                ls_images: [...ls_images, data],
+                loading: false,
+              }));
           } catch (e) {
             setLState((cs) => ({ ...cs, loading: false }));
             console.log('> Cloudinary upload failed ', e);
@@ -57,11 +65,21 @@ const FileUpload = ({ setLState, ls_images = [] }) => {
         { public_id: id },
         { headers: { authtoken: user.token } }
       );
-      setLState((cs) => ({
-        ...cs,
-        ls_images: ls_images.filter((item) => item.public_id !== id),
-        loading: false,
-      }));
+      if (singleUpload)
+        setLState((cs) => ({
+          ...cs,
+          image: {
+            url: 'https://via.placeholder.com/150.png?text=Post',
+            public_id: new Date().getTime(),
+          },
+          loading: false,
+        }));
+      else
+        setLState((cs) => ({
+          ...cs,
+          ls_images: ls_images.filter((item) => item.public_id !== id),
+          loading: false,
+        }));
     } catch (e) {
       setLState((cs) => ({ ...cs, loading: false }));
       console.log(e);
@@ -83,9 +101,17 @@ const FileUpload = ({ setLState, ls_images = [] }) => {
         </label>
       </div>
       <div className='col-md-9 c_grid'>
-        {ls_images.map((img, i) => (
-          <Image img={img} i={i} handleImageRemoval={handleImageRemoval} />
-        ))}
+        {singleUpload ? (
+          <Image
+            img={image}
+            i={image.public_id}
+            handleImageRemoval={handleImageRemoval}
+          />
+        ) : (
+          ls_images.map((img, i) => (
+            <Image img={img} i={i} handleImageRemoval={handleImageRemoval} />
+          ))
+        )}
       </div>
     </div>
   );

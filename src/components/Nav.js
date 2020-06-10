@@ -4,11 +4,11 @@ import { auth } from '../firebase';
 import { AuthContext } from '../context/authContext';
 
 const Nav = () => {
+  const history = useHistory();
   const {
     state: { user },
     dispatch,
   } = React.useContext(AuthContext);
-  const history = useHistory();
 
   const logout = () => {
     auth.signOut();

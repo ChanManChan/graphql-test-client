@@ -1,18 +1,17 @@
 import React from 'react';
-import Image from './Image';
 import { Link } from 'react-router-dom';
 
 const UserCard = ({
   user: { username = '', images = [], about = '' } = {},
 }) => (
-  <div className='card text-center' style={{ minHeight: '375px' }}>
-    <div className='card-body'>
-      <Image img={images[1]} />
-      <Link to={`/user/${username}`}>
-        <h4 className='text-primary'>@{username}</h4>
+  <div class='card' style={{ width: '18rem' }}>
+    <img class='card-img-top' src={images[1].url} alt='Card image cap' />
+    <div class='card-body'>
+      <h5 class='card-title'>@{username}</h5>
+      <p class='card-text'>{about}</p>
+      <Link to={`/user/${username}`} class='btn btn-primary'>
+        Visit Profile
       </Link>
-      <hr />
-      <small>{about}</small>
     </div>
   </div>
 );

@@ -1,55 +1,35 @@
 import React, { useContext } from 'react';
-import { gql } from 'apollo-boost';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { AuthContext } from '../context/authContext';
 import { useHistory } from 'react-router-dom';
 import { GET_ALL_POSTS } from '../graphql/queries';
+import PostCard from '../components/PostCard';
 
 const Home = () => {
   const { data: { allPosts = [] } = {} } = useQuery(GET_ALL_POSTS);
-  const [fetchPosts, { data: { allPosts: posts = [] } = {} }] = useLazyQuery(
-    GET_ALL_POSTS
-  );
+  // const [fetchPosts, { data: { allPosts: posts = [] } = {} }] = useLazyQuery(
+  //   GET_ALL_POSTS
+  // );
   // access context
   const { state, dispatch } = useContext(AuthContext);
 
   let history = useHistory();
 
-  const updateUserName = () => {
-    dispatch({ type: 'LOGGED_IN_USER', payload: 'chanChanMan' });
-  };
-
   return (
     <div className='container'>
-      <div className='row p-5'>
-        {posts.map((p, i) => (
-          <div className='col-md-4' key={i}>
-            <div className='card'>
-              <div className='card-body'>
-                <div className='card-title'>
-                  <h4>{p.title}</h4>
-                </div>
-                <p className='card-text'>{p.description}</p>
-              </div>
-            </div>
-          </div>
+      <div className='card-deck'>
+        {allPosts.map((p, i) => (
+          <PostCard
+            i={i}
+            src={p.image.url}
+            alt={p.image.public_id}
+            username={p.postedBy.username}
+            content={p.content}
+            createdAt={p.createdAt}
+          />
         ))}
       </div>
-      <hr />
-      <div className='row p-5'>
-        <button
-          className='btn btn-raised btn-primary'
-          onClick={() => fetchPosts()}
-        >
-          Fetch Posts
-        </button>
-      </div>
       {JSON.stringify(state.user)}
-      <hr />
-      <button className='btn btn-primary' onClick={updateUserName}>
-        Change user name
-      </button>
-      <hr />
       {JSON.stringify(history)}
     </div>
   );

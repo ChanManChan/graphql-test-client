@@ -40,7 +40,7 @@ const PrivateRoute = (props) => {
             </a>
             <ul className='collapse list-unstyled' id='profileSubmenu'>
               <li>
-                <Link to='/profile'>Profile</Link>
+                <Link to='/profile'>Edit Profile</Link>
               </li>
               <li>
                 <Link to='/password/update'>Update Password</Link>
@@ -48,7 +48,22 @@ const PrivateRoute = (props) => {
             </ul>
           </li>
           <li>
-            <Link to='/post/create'>Post</Link>
+            <a
+              href='#postsSubmenu'
+              data-toggle='collapse'
+              aria-expanded='false'
+              className='dropdown-toggle'
+            >
+              Posts
+            </a>
+            <ul className='collapse list-unstyled' id='postsSubmenu'>
+              <li>
+                <Link to='/posts/this_user'>Activity Log</Link>
+              </li>
+              <li>
+                <Link to='/post/create'>Create Post</Link>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
