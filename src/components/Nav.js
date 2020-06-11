@@ -1,11 +1,26 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { auth } from '../firebase';
 import { AuthContext } from '../context/authContext';
 import Search from './Search';
 
+const sb_auth = [
+  '/password/update',
+  '/profile',
+  '/posts/this_user',
+  '/post/create',
+];
+
 const Nav = () => {
   const history = useHistory();
+  const location = useLocation();
+  const [rerender, setRerender] = React.useState(false);
+
+  React.useEffect(() => {
+    if (sb_auth.includes(location.pathname)) setRerender(true);
+    else setRerender(false);
+  }, [location]);
+
   const {
     state: { user },
     dispatch,
@@ -29,14 +44,16 @@ const Nav = () => {
       id='c_Navbar'
       className='navbar navbar-expand-lg navbar-light bg-light'
     >
-      <button
-        type='button'
-        id='sidebarCollapse'
-        className='btn btn-primary my-auto mr-2'
-        onClick={present}
-      >
-        <i className='fas fa-align-left'></i>
-      </button>
+      {rerender && (
+        <button
+          type='button'
+          id='sidebarCollapse'
+          className='btn btn-primary my-auto mr-2'
+          onClick={present}
+        >
+          <i className='fas fa-align-left'></i>
+        </button>
+      )}
       <Link className='navbar-brand' to='/'>
         Home
       </Link>

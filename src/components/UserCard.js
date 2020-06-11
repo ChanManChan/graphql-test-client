@@ -5,7 +5,11 @@ const UserCard = ({
   user: { username = '', images = [], about = '' } = {},
 }) => (
   <div class='card' style={{ width: '18rem' }}>
-    <img class='card-img-top' src={images[1].url} alt='Card image cap' />
+    <img
+      class='card-img-top'
+      src={images[1] ? images[1].url : images[0].url}
+      alt='Card image cap'
+    />
     <div class='card-body'>
       <h5 class='card-title'>@{username}</h5>
       <p class='card-text'>{about}</p>

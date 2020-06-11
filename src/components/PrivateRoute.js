@@ -80,34 +80,3 @@ const PrivateRoute = (props) => {
 };
 
 export default PrivateRoute;
-{
-  /* <li>
-<a
-  href='#pageSubmenu'
-  data-toggle='collapse'
-  aria-expanded='false'
-  className='dropdown-toggle'
->
-  Pages
-</a>
-<ul className='collapse list-unstyled' id='pageSubmenu'>
-  <li>
-    <a href='#'>Page 1</a>
-  </li>
-  <li>
-    <a href='#'>Page 2</a>
-  </li>
-  <li>
-    <a href='#'>Page 3</a>
-  </li>
-</ul>
-</li> */
-}
-{
-  /* <li>
-<a href='#'>Portfolio</a>
-</li>
-<li>
-<a href='#'>Contact</a>
-</li> */
-}
