@@ -11,8 +11,8 @@ export const PROFILE = gql`
 `;
 
 export const GET_ALL_POSTS = gql`
-  {
-    allPosts {
+  query AllPosts($page: Int) {
+    allPosts(page: $page) {
       ...postData
     }
   }
@@ -40,6 +40,21 @@ export const POSTS_BY_USER = gql`
 export const SINGLE_POST = gql`
   query SinglePost($_id: ID!) {
     singlePost(postId: $_id) {
+      ...postData
+    }
+  }
+  ${POST_DATA}
+`;
+
+export const TOTAL_POSTS = gql`
+  {
+    totalPosts
+  }
+`;
+
+export const SEARCH = gql`
+  query Search($query: String) {
+    search(query: $query) {
       ...postData
     }
   }
